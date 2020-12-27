@@ -2,6 +2,7 @@ import React, {
     Component
 }
 from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 import api from '../meta/api';
 
 class Me extends Component {
@@ -32,21 +33,19 @@ class Me extends Component {
         console.log(servers)
 
         if (!isLoaded) {
-            return ( < div >
-                < Navbar / >
-                < center > < br / > < br / > < br / > < br / >
-                < Spinner animation = "border"
-                role = "status" >
-                < span className = "sr-only" > Loading... < /span>  < /Spinner> <h3> Please wait while we load your info </h
-                3 >
-                < br / >
-                < small > If this does not stop spinning then something happened... < /small> < /center> < Footer / >
-                < /div>
+            return ( <div>
+                <center> <br /> <br /> <br /> <br />
+                 Spinner animation = "border" role = "status" >
+                <span className = "sr-only" > Loading... < /span>  </Spinner> <h3> Please wait while we load your info </h3>
+                <br />
+                <small> If this does not stop spinning then something happened... </small> </center> 
+                </div>
             )
         } else {
 
-            return ( < div > { /* you can change this your self to look better so that its not just the server names :) */ } {
-                    servers.map(guild => guild.name
+            return ( < div > { /* you can change this your self to look better so that its not just the server names :) */ } 
+                    {
+                    servers.map(guild => guild.name)
                     } < /div>
                 )
             }
