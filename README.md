@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To start the project: 
+### `npm start && node src/backend/index.js` (might have to switch them)
+
 ## Available Scripts
 
 In the project directory, you can run:
