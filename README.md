@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To start the project: 
 ### `npm start && node src/backend/index.js` (might have to switch them)
+- note: i may have forgotten a part of the code or if you need help just open a issue: [here](https://github.com/TheTeaCup/react-dashboard-boilerplate/issues)
 
 ## Available Scripts
 
