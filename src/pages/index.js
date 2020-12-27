@@ -4,9 +4,11 @@ const Home = () => {
 
     return (
         <div>
-          <h3 href={api.getOauth()}>
-            Login
-          </h3>
+            { user ? ( 
+                <h3 href="/me"> Account </h3>
+            ) : (
+                <h3 href={api.getOauth()}> Login </h3>
+            )}
         </div>
     )
 }
