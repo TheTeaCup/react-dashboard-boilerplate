@@ -35,8 +35,9 @@ class Me extends Component {
         if (!isLoaded) {
             return ( <div>
                 <center> <br /> <br /> <br /> <br />
-                 Spinner animation = "border" role = "status" >
-                <span className = "sr-only" > Loading... < /span>  </Spinner> <h3> Please wait while we load your info </h3>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </Spinner> <h3> Please wait while we load your info </h3>
                 <br />
                 <small> If this does not stop spinning then something happened... </small> </center> 
                 </div>
