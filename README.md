@@ -5,4 +5,6 @@
 # How to Install:
 - `npm i` To install packages needed
 - `npm run build` - To create the React build folder
-- Setup your `.env` file
+- Set up your `.env` file
+- Find the API File in `src/util` and put in your bots ID
+also in that file you should see something labeled as `scope` replace the current ones with what you need

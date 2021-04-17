@@ -2,12 +2,14 @@ import api from '../meta/api';
 
 const Home = () => {
 
+    let user = localStorage.getItem('user');
+
     return (
         <div>
             { user ? ( 
-                <h3 href="/me"> Account </h3>
+                <a href="/me"> Account </a>
             ) : (
-                <h3 href={api.getOauth()}> Login </h3>
+                <a href={api.getOauth()}> Login </a>
             )}
         </div>
     )

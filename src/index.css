@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Sora&display=swap");
+
+body {
+    background: #2C2F33;
+    color: #7289DA
+}
+
+a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    width: 100%;
+    position: fixed;
+    text-decoration: none;
+    color: #7289DA;
+}
+
+a :hover {
+    color: #7289DA;
+    text-decoration: none;
+}
+
+
+* {
+    font-family: "Sora", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*::selection {
+    background: #7289DA;
+    color: #fff
+}
+
+
+h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    width: 100%;
+    position: fixed;
+}

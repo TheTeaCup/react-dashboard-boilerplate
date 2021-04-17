@@ -1,7 +1,7 @@
 import React, {
     Component
 }
-from 'react';
+    from 'react';
 import api from '../meta/api';
 
 class Me extends Component {
@@ -31,23 +31,13 @@ class Me extends Component {
         } = this.state;
         console.log(servers)
 
-        if (!isLoaded) {
-            return ( <div>
-                <center> <br /> <br /> <br /> <br />
-                <h3> Please wait while we load your info </h3>
-                <br />
-                <small> If this does not stop spinning then something happened... </small> </center> 
-                </div>
-            )
-        } else {
+        return (
+            <>
 
-            return ( < div > { /* you can change this your self to look better so that its not just the server names :) */ } 
-                    {
-                    servers.map(guild => guild.name)
-                    } < /div>
-                )
-            }
-        }
+            </>
+        )
+
     }
+}
 
-    export default (Me);
+export default (Me);
