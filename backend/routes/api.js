@@ -1,7 +1,12 @@
 var express = require('express');
-const passport = require("passport");
 var router = express.Router();
 const Discord = require("discord.js");
+const DiscordOauth2 = require("discord-oauth2");
+const oauth = new DiscordOauth2({
+  clientId: process.env.ID,
+  clientSecret: process.env.secret
+});
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -10,10 +15,44 @@ router.get('/', function(req, res, next) {
   })
 });
 
-router.post("/callback", passport.authenticate("discord", { failureRedirect: "/404" }), async (req, res) => {
-   // console.log(req.user)
-   await res.send(req.user);
-});
+router.get(
+    "/callback",
+
+    async (req, res) => {
+      try {
+        let code = req.query.code;
+        if (!code) return res.json({error: true, message: "no code"});
+
+        let redirect = req.query.redirect;
+        if (!redirect) return res.json({error: true, message: "no redirect"});
+
+        let info = await oauth.tokenRequest({
+          clientId: process.env.ID,
+          clientSecret: process.env.secret,
+          redirectUri: redirect + "/callback",
+
+          code: code,
+          scope: "identify",
+          grantType: "authorization_code"
+        });
+
+        let data = {
+          user: null
+        };
+
+        await oauth.getUser(info.access_token).then(async userInfo => {
+
+          data.user = userInfo;
+
+          res.send(data);
+
+        });
+      } catch (e) {
+        console.log(e)
+        return res.json({error: true, message: e});
+      }
+    }
+);
 
 // gets the servers a user has authorization to make changes in
 router.post("/servers", async (req, res) => {

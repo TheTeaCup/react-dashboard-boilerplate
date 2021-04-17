@@ -1,13 +1,14 @@
-const baseURL = "http://localhost:3000";
-const ID = "BOT_ID";
+const baseURL = window.origin;
+const api = "http://localhost:3001";
+const ID = "675167375858991115";
 
-exports.fetchStats = async () => {
+const fetchStats = async () => {
     const res = await fetch(`${baseURL}/api/application`);
     const result = await res.json();
     return result;
 };
 
-exports.getInvite = () => {
+const getInvite = function ()  {
     const url = new URL('https://discordapp.com/oauth2/authorize');
     url.search = new URLSearchParams([
         ['client_id', ID ],
@@ -17,28 +18,33 @@ exports.getInvite = () => {
     return url.href;
 }
 
-exports.getOauth = () => {
-    const url = new URL('https://discordapp.com/oauth2/authorize');
+const getOauth = function () {
+    let re = "/me"
+    const url = new URL("https://discordapp.com/oauth2/authorize");
     url.search = new URLSearchParams([
-        ['redirect_uri', baseURL + "/callback" ],
-        ['response_type', 'code'],
-        ['scope', ['identify', 'guilds'].join(' ')],
-        ['client_id', ID ]
+        ["redirect_uri", baseURL + "/callback"],
+        ["response_type", "code"],
+        ["scope", ["identify"].join(" ")],
+        ["client_id", ID],
+        ["prompt", "none"],
+        ["state", re]
     ]);
+
     return url.href;
 };
 
-exports.user = async code => {
-    if(!code || code === "n/a")return;
-    const user = await fetch(`http://localhost:3001/api/callback?code=` + code, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+const user = async function (code) {
+    if (!code || code === "n/a") return;
+    const user = await fetch(`${api}/api/callback?code=${code}&redirect=${baseURL}`, {
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
     }).then(res => res.json());
-    localStorage.setItem('user', JSON.stringify(user));
-    return user;
-}
 
-exports.servers = async (info) => {
+    console.log(user)
+    return user;
+};
+
+const servers = async function (info) {
     const userServers = await fetch(`http://localhost:3001/api/servers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -47,3 +53,13 @@ exports.servers = async (info) => {
     localStorage.setItem('guildsAuthorized', JSON.stringify(userServers));
     return userServers;
 }
+
+export {
+    getOauth,
+    fetchStats,
+    user,
+    getInvite,
+    servers
+}
+
+export default api;

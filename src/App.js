@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={index} />
-          {/*<Route exact path="/callback" component={call} />*/}
+          <Route exact path="/callback" component={call} />
           <Route exact path="/me" component={me} />
           <Route component={NoMatch} />
         </Switch>

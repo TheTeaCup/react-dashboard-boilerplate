@@ -2,7 +2,7 @@ import React, {
     Component
 }
 from 'react';
-import api from '../meta/api';
+import * as api from "../meta/api";
 
 class Me extends Component {
     state = {
@@ -17,37 +17,24 @@ class Me extends Component {
         if (code === "n/a") return window.location.href = api.getOauth()
         if (!code) return window.location.href = api.getOauth()
 
-        let info = await api.servers(localStorage.getItem('user'));
-        console.log(info)
-        this.state({
-            isLoaded: true,
-            servers: info.servers
-        });
+        this.setState({user: JSON.parse(localStorage.getItem('user'))})
+
     }
 
     render() {
         const {
-            error, isLoaded, servers
+            user
         } = this.state;
-        console.log(servers)
+        console.log(user)
 
-        if (!isLoaded) {
-            return ( <div>
-                <center> <br /> <br /> <br /> <br />
-                <h3> Please wait while we load your info </h3>
-                <br />
-                <small> If this does not stop spinning then something happened... </small> </center> 
-                </div>
-            )
-        } else {
-
-            return ( < div > { /* you can change this your self to look better so that its not just the server names :) */ } 
-                    {
-                    servers.map(guild => guild.name)
-                    } < /div>
-                )
-            }
-        }
+        return (
+            <>
+                {user ? (
+                    <h3>Hello {user.username}</h3>
+                ):(<></>)}
+            </>
+        )
     }
+}
 
     export default (Me);

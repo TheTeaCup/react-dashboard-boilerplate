@@ -1,4 +1,4 @@
-import api from '../meta/api'; 
+import * as api from "../meta/api";
 
 const Home = () => {
 
